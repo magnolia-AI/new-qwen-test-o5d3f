@@ -1,28 +1,47 @@
-'use client'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
-import { useToast } from "@/hooks/use-toast"
+'use client';
 
-{/* 
-  TEMPLATE PAGE: Home
-  This is a template home page.
-  Replace all content with content that suits the users request.
-*/}
+import { CreatePost } from '@/components/social/create-post';
+import { PostFeed } from '@/components/social/post-feed';
+import { Sidebar } from '@/components/social/sidebar';
+import { MobileNav } from '@/components/social/mobile-nav';
+
 export default function Home() {
-  const { toast } = useToast()
   return (
-    <div className="min-h-full">
-
-      <section className="container mx-auto px-4 pt-24 pb-20">
-        <div className="max-w-[800px] mx-auto text-center">
-          <h1 className="text-5xl font-bold tracking-tight lg:text-6xl">
-            Template Starter
-          </h1>
-          <p className="mt-6 text-xl text-muted-foreground max-w-[600px] mx-auto">
-            This is a customizable template. Replace all content with your own using the chat interface.
-          </p>
+    <div className="flex min-h-screen">
+      <Sidebar />
+      
+      <main className="flex-1 border-x">
+        <div className="sticky top-0 bg-background border-b p-4">
+          <h1 className="text-xl font-bold">Home</h1>
         </div>
-      </section>
+        
+        <div className="p-4">
+          <CreatePost />
+          <PostFeed />
+        </div>
+      </main>
+      
+      <div className="hidden lg:block w-80 p-4">
+        <div className="sticky top-20">
+          <div className="bg-muted rounded-xl p-4">
+            <h2 className="font-bold mb-2">Trends for you</h2>
+            <div className="space-y-3">
+              <div>
+                <p className="text-xs text-muted-foreground">Trending in Technology</p>
+                <p className="font-semibold">#NextJS</p>
+                <p className="text-xs text-muted-foreground">125K posts</p>
+              </div>
+              <div>
+                <p className="text-xs text-muted-foreground">Trending</p>
+                <p className="font-semibold">#WebDevelopment</p>
+                <p className="text-xs text-muted-foreground">89.2K posts</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <MobileNav />
     </div>
-  )
+  );
 }
